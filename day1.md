@@ -34,6 +34,12 @@ It tells the browser numerous things like:
 - Stores data
 For this project this is where wed block tracking requests before they reach the trackers server
 
+**Background Script Context:**
+- Runs in isolation, doesn't have access to web pages
+- CAN see all network requests across all tabs
+- CAN'T see or modify page content directly
+- Lives in its own little bubble
+
 ## Content Script(content.js) - The page inspector
 This is going to get injected into the web pages the user visits it can read and modify the pages DOM
 - Reads everything on the page
@@ -41,6 +47,12 @@ This is going to get injected into the web pages the user visits it can read and
 - Can communicate with the background script
 For the project this is where we can scan forms for suspicious data collection or delete tracking
 scripts emebeded into the page
+
+**Content Script Context:**
+- Runs inside the actual web page
+- CAN see and modify the page's HTML/DOM
+- CAN'T directly access all browser APIs
+- Shares the page's context but is isolated from the page's JavaScript
 
 ## Popup (popup.html + popup.js) - The User Interface
 - This is the little window that appears when someone clicks your extension icon in the toolbar.
